@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Detection</title>
+</head>
+<body>
+    <h1>Diabetes Detection Prediction</h1>
+    <p style="color: green;">{{ model_message }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="age">Age:</label>
+        <input type="text" name="age" required><br><br>
+
+        <label for="bmi">BMI:</label>
+        <input type="text" name="bmi" required><br><br>
+
+        <label for="glucose">Glucose Level:</label>
+        <input type="text" name="glucose" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if result %}
+        <h2>{{ result }}</h2>
+    {% elif error %}
+        <h2 style="color: red;">{{ error }}</h2>
+    {% endif %}
+</body>
+</html>
